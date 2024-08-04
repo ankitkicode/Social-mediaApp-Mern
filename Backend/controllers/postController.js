@@ -4,7 +4,7 @@ const User = require('../models/user');
 // Create Post Controller
 const createPostController = async (req, res, next) => {
     // console.log(req.body)
-    const { caption, tags, location,  } = req.body;
+    const { caption, tags, location, } = req.body;
     const userId = req.user.id
     // console.log(userId)
 
@@ -60,5 +60,23 @@ const createPostController = async (req, res, next) => {
     }
 };
 
+const allPosts = async (req, res, next) => {
+    try {
+        const posts = await Post.find().populate('user'); // Assuming user field in Post schema references User model
+        // console.log(posts)
+        res.status(200).json({
+            message: "All posts retrieved successfully",
+            user: req.user,
+            posts: posts,
+        });
+    } catch (error) {
+        console.error('Error retrieving posts:', error);
+        res.status(500).json({
+            message: 'Error retrieving posts',
+            error: error.message,
+        });
+    }
+};
 
-module.exports = { createPostController };
+
+module.exports = { createPostController, allPosts };
