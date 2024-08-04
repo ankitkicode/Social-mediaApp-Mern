@@ -2,57 +2,63 @@ const Post = require('../models/post');
 const User = require('../models/user');
 
 // Create Post Controller
-const createPostController = async (req, res) => {
-    const { caption, tags, location } = req.body;
-    const userId = req.user.id; // Assumes user ID is available from authentication middleware
-    // console.log("from post create controller ", caption, tags , userId, location,  req.file)
-    console.log(req.body)
-    res.json({message : "chal gya raoute "})
-    // try {
-    //     // Retrieve the user
-    //     const user = await User.findById(userId);
-    //     if (!user) {
-    //         return res.status(404).json({ message: 'User not found.' });
-    //     }
+const createPostController = async (req, res, next) => {
+    // console.log(req.body)
+    const { caption, tags, location,  } = req.body;
+    const userId = req.user.id
+    // console.log(userId)
 
-    //     // Log to check if file is being received
-    //     console.log("from post create controller ", caption, req.file);
+    // Check if file is uploaded
+    if (!req.file) {
+        return next(createError(400, 'No file uploaded.'));
+    }
 
-    //     // Validate input
-    //     if (!caption || !req.file) {
-    //         return res.status(400).json({ message: 'Caption and image are required.' });
-    //     }
+    try {
+        // Retrieve the user
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
 
-    //     // Create a new post
-    //     const newPost = new Post({
-    //         caption,
-    //         image: req.file.path,
-    //         tags,
-    //         location,
-    //         user: userId,
-    //     });
+        // Log to check if file is being received
+        // console.log("from post create controller ", caption, req.file);
 
-    //     // Save the post to the database
-    //     const savedPost = await newPost.save();
-    //     console.log("saved post ", savedPost);
+        // Validate input
+        if (!caption || !req.file) {
+            return res.status(400).json({ message: 'Caption and image are required.' });
+        }
 
-    //     // Update the user's posts array
-    //     user.posts.push(savedPost._id);
-    //     await user.save();
+        // Create a new post
+        const newPost = new Post({
+            caption,
+            image: req.file.path,
+            tags,
+            location,
+            user: userId,
+        });
 
-    //     // Respond with the created post
-    //     res.status(201).json({
-    //         message: 'Post created successfully',
-    //         post: savedPost,
-    //     });
-    // } catch (error) {
-    //     // Handle errors
-    //     console.error('Error creating post:', error);
-    //     res.status(500).json({
-    //         message: 'Error creating post',
-    //         error: error.message,
-    //     });
-    // }
+        // Save the post to the database
+        const savedPost = await newPost.save();
+        // console.log("saved post ", savedPost);
+
+        // Update the user's posts array
+        user.posts.push(savedPost._id);
+        await user.save();
+
+        // Respond with the created post
+        res.status(201).json({
+            message: 'Post created successfully',
+            post: savedPost,
+        });
+    } catch (error) {
+        // Handle errors
+        console.error('Error creating post:', error);
+        res.status(500).json({
+            message: 'Error creating post',
+            error: error.message,
+        });
+    }
 };
+
 
 module.exports = { createPostController };

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const PostForm = () => {
   const [caption, setCaption] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [tags, setTags] = useState('');
   const [location, setLocation] = useState('');
   const navigate = useNavigate()
@@ -27,7 +27,7 @@ const PostForm = () => {
       // Create FormData object
       const formData = new FormData();
       formData.append('caption', caption);
-      formData.append('image', image);
+      formData.append('profileImage', image);
       formData.append('tags', tagsArray);
       formData.append('location', location);
 
@@ -35,12 +35,13 @@ const PostForm = () => {
       const response = await axiosInstance.post('/create-post', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`
+           Authorization: `Bearer ${token}`
         }
       });
 
-      console.log('Post created:', response.data);
+      // console.log('Post created:', response.data);
       toast.success(response.data.message);
+      navigate('/')
 
       // Clear form fields after successful submission
       setCaption('');

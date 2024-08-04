@@ -16,6 +16,6 @@ router.get('/allposts',isLoggedIn,(req,res)=>{
   res.json({message:"This is a protected route" , user:req.user})
 });
 
-router.post('/create-post',isLoggedIn, upload.single('image'), createPostController);
+router.post('/create-post',isLoggedIn, upload.single('profileImage'), createPostController);
 
 module.exports = router;
