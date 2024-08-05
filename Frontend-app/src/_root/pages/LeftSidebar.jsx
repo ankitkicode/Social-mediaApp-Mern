@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const LeftSidebar = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/')
+  }
 
   return (
     <nav className='leftsidebar'>
@@ -54,7 +59,7 @@ const LeftSidebar = () => {
             </Link>
           </li>
         </ul>
-        <button className='py-3 px-2 mt-16 font-semibold text-lg flex gap-3 rounded-lg transition-all hover:bg-blue-700'>
+        <button onClick={handleLogout} className='py-3 px-2 mt-16 font-semibold text-lg flex gap-3 rounded-lg transition-all hover:bg-blue-700'>
           <i className="ri-user-shared-2-fill text-lg"></i>
           <span>Logout</span>
         </button>

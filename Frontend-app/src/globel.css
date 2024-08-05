@@ -173,12 +173,12 @@
     @apply flex flex-col items-center flex-1 gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
   }
 
-  .profile-inner_container {
+  /* .profile-inner_container {
     @apply flex items-center md:mb-8 xl:items-start gap-8 flex-col xl:flex-row relative max-w-5xl w-full;
-  }
+  } */
 
   .profile-tab {
-    @apply flex-center gap-3 py-4 w-48 bg-zinc-900  transition flex-1 xl:flex-initial;
+    @apply flex-center gap-3 py-4 w-48 bg-zinc-700  transition flex-1 xl:flex-initial;
   }
 
   /* Saved */
