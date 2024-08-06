@@ -41,7 +41,7 @@ const Profile = () => {
             {menuOpen && (
               <div
                 ref={menuRef}
-                className={`fixed left-0 w-full h-[50vh] bg-zinc-700 z-30 transition-transform duration-300 ${menuOpen ? 'transform translate-y-0' : 'transform translate-y-full'}`}
+                className={`fixed left-0 w-full h-[50vh] rounded-t-3xl bg-zinc-700 z-30 transition-transform duration-300 ${menuOpen ? 'transform translate-y-0' : 'transform translate-y-full'}`}
                 style={{ bottom: '0', transform: `${menuOpen ? 'translateY(0)' : 'translateY(100%)'}` }}
               >
                 <ul className=' h-full flex flex-col text-2xl font-semibold gap-2 px-6 py-3'>

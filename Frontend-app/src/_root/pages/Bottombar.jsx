@@ -15,7 +15,7 @@ const Bottombar = () => {
         </li>
         <li className={`flex text-center ${activeLink === '/explore' ? 'bg-blue-700' : ''} hover:bg-blue-700 rounded-full`}>
           <Link to={'/explore'} className='flex gap-3 py-2 px-3 rounded-full items-center w-full h-full'>
-            <i className="ri-line-chart-fill text-xl"></i>
+          <i class="ri-search-2-line text-xl"></i>
           </Link>
         </li>
         <li className={`flex text-center ${activeLink === '/create-post' ? 'bg-blue-700' : ''} hover:bg-blue-700 rounded-full`}>

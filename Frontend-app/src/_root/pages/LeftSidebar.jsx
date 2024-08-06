@@ -36,7 +36,7 @@ const LeftSidebar = () => {
           </li>
           <li className={`leftsidebar-link ${activeLink === '/explore' ? 'bg-blue-700' : 'hover:bg-blue-700'}`}>
             <Link to={'/explore'} className='flex gap-3 py-3 px-2 items-center ' onClick={() => setActiveLink('/explore')}>
-              <i className="ri-line-chart-fill text-xl"></i>
+            <i class="ri-search-2-line text-xl"></i>
               <span>Explore</span>
             </Link>
           </li>
@@ -47,9 +47,9 @@ const LeftSidebar = () => {
             </Link>
           </li>
           <li className={`leftsidebar-link ${activeLink === '/saved' ? 'bg-blue-700' : 'hover:bg-blue-700'}`}>
-            <Link to={'/saved'} className='flex gap-3 py-3 px-2 items-center ' onClick={() => setActiveLink('/saved')}>
-              <i className="ri-import-fill text-xl"></i>
-              <span>Saved</span>
+            <Link to={'/message'} className='flex gap-3 py-3 px-2 items-center ' onClick={() => setActiveLink('/saved')}>
+            <i class="ri-message-fill text-xl"></i>
+              <span>Message</span>
             </Link>
           </li>
           <li className={`leftsidebar-link ${activeLink === '/create-post' ? 'bg-blue-700' : 'hover:bg-blue-700'}`}>

@@ -14,6 +14,8 @@ import Profile from "./_root/pages/Profile";
 import PostDetails from "./_root/pages/PostDetails";
 import EditPost from "./_root/pages/EditPost";
 import ProtectedRoute from './services/ProtectedRoute'
+import Message from "./_root/pages/Message";
+import Notification from "./_root/pages/Notification";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/explore" element={<Explore/>} />
           <Route path="/peoples" element={<Peoples/>} />
           <Route path="/saved" element={<Saved/>} />
+          <Route path="/message" element={<Message/>} />
+          <Route path="/notification" element={<Notification/>} />
           <Route path="/create-post" element={<CreatePost/>} />
           <Route path="/update-post/:id" element={<EditPost/>} />
           <Route path="/post/:id" element={<PostDetails/>} />
