@@ -7,7 +7,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const cors = require('cors')
 var app = express();
-app.use(cors()); //allow all origin
+app.use(cors(
+  {
+    origin: 'http://localhost:5173', // The frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}
+)); //allow all origin
 
 const connectDB = require('./database/dbconnection')
 connectDB();

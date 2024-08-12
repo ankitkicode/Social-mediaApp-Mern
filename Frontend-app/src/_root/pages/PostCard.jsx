@@ -7,7 +7,7 @@ const PostCard = ({ post }) => {
   if (!post) return null; 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    console.log(date)
+    // console.log(date)
     return  format(date, 'd MMM yyyy') // Example format: 4 August 2024
   };
   return (

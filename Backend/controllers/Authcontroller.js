@@ -24,20 +24,20 @@ const RegisterController = async (req, res, next) => {
 
         // Save user to database
         await newUser.save();
-
-        // Authenticate the user
-        req.login(newUser, { session: false }, async (err) => {
-            if (err) return next(err);
-
-            // Generate JWT token
-            const token = jwt.sign({ id: newUser._id, email: newUser.email }, secretKey, { expiresIn: '1h' });
-
             // Send JSON response with token and user data
             res.status(201).json({
-                message: 'User registered and logged in successfully',
-                token: token,
+                message: 'User registered successfully',
             });
-        });
+
+        // Authenticate the user
+        // req.login(newUser, { session: false }, async (err) => {
+        //     if (err) return next(err);
+
+        //     // Generate JWT token
+        //     const token = jwt.sign({ id: newUser._id, email: newUser.email }, secretKey, { expiresIn: '1h' });
+
+        
+        // });
 
     } catch (error) {
         // Handle errors

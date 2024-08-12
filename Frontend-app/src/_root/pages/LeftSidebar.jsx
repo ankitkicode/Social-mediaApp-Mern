@@ -1,7 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../api/axiosinstance';
+// import { DataContext } from '../../api/DataContext';
 
 const LeftSidebar = () => {
+ // const { data, isLoading } = useContext(DataContext); // Empty dependency array ensures this effect runs only once after initial render
+ const [user , setUser] = useState([]);
+ const [isLoading, setIsLoading] = useState(true);
+ const [error, setError] = useState(null);
+
+ useEffect(() => {
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get('http://localhost:3000/allposts');
+      if (response.data) {
+        // console.log(response.data.loggedInUser)
+        setUser(response.data.loggedInUser); // Ensure you set the correct field from the response
+      } else {
+        setError('No data returned');
+      }
+    } catch (err) {
+      // console.log(err)
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  getData();
+}, []);
+  // console.log(loginUser.name)
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
   const navigate = useNavigate()
@@ -10,20 +38,30 @@ const LeftSidebar = () => {
     navigate('/')
   }
 
+  if (isLoading) {
+    // Handle the case when loginUser is not available
+    return <p>Loading...</p>; // Or handle it according to your app’s needs
+  }
+  // if (error) {
+  //   return <div className='h-[100vh] w-full flex items-center justify-center text-2xl'>{error}</div>;
+  // }
+
   return (
     <nav className='leftsidebar'>
       <div className='flex flex-col gap-11'>
         <Link to={"/"} className='flex gap-3 mt-[-10px] items-center'>
           <h1 className="font-semibold uppercase">Snapgraph</h1>
         </Link>
-        <Link to={'/myprofile'} className='flex items-center mt-[-18px] mb-[-8px] gap-3'>
-          <i className="ri-user-6-fill py-2 px-3 bg-zinc-700 rounded-full"></i>
+        <Link to={'/profile'} className='flex items-center mt-[-18px] mb-[-8px] gap-3'>
+          <i className="ri-user-6-fill py-2 px-3 bg-zinc-700 rounded-full">
+
+          </i>
           <div className='flex flex-col'>
             <p className='body-bold'>
-              Ankit Jatav
+              {user.name}
             </p>
             <p className='small-regular text-light-3'>
-              @ankitkicode
+              @{user.username}
             </p>
           </div>
         </Link>

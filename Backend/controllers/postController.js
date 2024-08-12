@@ -61,13 +61,17 @@ const createPostController = async (req, res, next) => {
 };
 
 const allPosts = async (req, res, next) => {
+    const userId = req.user.id
     try {
+        const loggedInUser = await User.findById(userId)
+        // console.log(loggedInUser);
         const posts = await Post.find().populate('user'); // Assuming user field in Post schema references User model
         // console.log(posts)
         res.status(200).json({
             message: "All posts retrieved successfully",
             user: req.user,
             posts: posts,
+            loggedInUser:loggedInUser
         });
     } catch (error) {
         console.error('Error retrieving posts:', error);
@@ -78,5 +82,46 @@ const allPosts = async (req, res, next) => {
     }
 };
 
+const userPosts = async (req, res, next) => {
+    let userId = req.params.id;
 
-module.exports = { createPostController, allPosts };
+    // If the userId is "me", use the ID from the authenticated user
+    if (userId === 'me') {
+        // Ensure req.user exists and contains the current user's ID
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({
+                message: 'User not authenticated',
+            });
+        }
+        userId = req.user.id;
+    }
+
+    try {
+        // Fetch the user and populate their posts
+        const user = await User.findById(userId).populate('posts');
+        
+        // Handle case where the user is not found
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found',
+            });
+        }
+
+        // Respond with the user and their posts
+        res.status(200).json({
+            message: 'User posts retrieved successfully',
+            user: user,
+        });
+    } catch (error) {
+        // Handle server errors
+        console.error('Error retrieving posts:', error);
+        res.status(500).json({
+            message: 'Error retrieving posts',
+            error: error.message,
+        });
+    }
+};
+
+
+
+module.exports = { createPostController, allPosts,userPosts };

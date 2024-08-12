@@ -28,6 +28,7 @@ function App() {
 
         <Route element={<RootLayout/>}>
           <Route index element={<ProtectedRoute > <Home /> </ProtectedRoute>} />
+          {/* <Route index element={ <Home /> } /> */}
           <Route path="/explore" element={<Explore/>} />
           <Route path="/peoples" element={<Peoples/>} />
           <Route path="/saved" element={<Saved/>} />
@@ -36,8 +37,8 @@ function App() {
           <Route path="/create-post" element={<CreatePost/>} />
           <Route path="/update-post/:id" element={<EditPost/>} />
           <Route path="/post/:id" element={<PostDetails/>} />
-          {/* <Route path="/profile/:id/*" element={<Profile/>} /> */}
-          <Route path="/myprofile" element={<Profile/>} />
+          <Route path="/profile/:id?" element={<Profile/>} />
+          {/* <Route path="/profile/:id" element={<Profile/>} /> */}
           <Route path="/update-profile/:id" element={<UpdateProfile/>} />
           {/* <Route path="/all-users" element={<AllUsers/>} /> */}
 

@@ -15,17 +15,17 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const data = await createAccount(name, username, email, password);
-        // Save token to local storage
-        localStorage.setItem('token', data.token);
-        toast.success(data.message)
-        // console.log(data)
-        // Redirect to home page
-        navigate('/');
+      const data = await createAccount(name, username, email, password);
+      // Save token to local storage
+      // localStorage.setItem('token', data.token);
+      toast.success(data.message)
+      // console.log(data)
+      // Redirect to home page
+      navigate('/sing-in');
     } catch (error) {
       toast.success(error.response.data.message)
     }
-};
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
@@ -33,7 +33,7 @@ const SignupForm = () => {
         <h1 className="text-2xl font-bold text-center mb-0 dark:text-gray-200">Welcome Back!</h1>
         <p className="text-center text-xs text-cyan-700">Register New User</p>
         <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+          <div className="mb-4">
             <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">UFull Name</label>
             <input
               type="text"
