@@ -26,7 +26,7 @@ Follow these steps to set up the project locally:
    ```
 ## Navigate to the Project Directory:
 ```bash
-cd shopping-Card
+cd Social-mediaApp-Mern
 ```
 ## Install Backend Dependencies
 ```bash
