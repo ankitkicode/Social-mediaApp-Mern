@@ -1,6 +1,6 @@
 // isLoggedIn.js middleware
 const jwt = require('jsonwebtoken');
-const secretKey = 'your_secret_key';
+const secretKey = process.env.JWT_SECRET;
 
 const isLoggedIn = (req, res, next) => {
     const authHeader = req.headers['authorization'];

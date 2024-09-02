@@ -14,7 +14,7 @@ const LeftSidebar = () => {
     try {
       const response = await axiosInstance.get('http://localhost:3000/allposts');
       if (response.data) {
-        // console.log(response.data.loggedInUser)
+        console.log(response.data.loggedInUser)
         setUser(response.data.loggedInUser); // Ensure you set the correct field from the response
       } else {
         setError('No data returned');
@@ -58,10 +58,10 @@ const LeftSidebar = () => {
           </i>
           <div className='flex flex-col'>
             <p className='body-bold'>
-              {user.name}
+              {user.name || "Full Name"}
             </p>
             <p className='small-regular text-light-3'>
-              @{user.username}
+              @{user.username || "username"}
             </p>
           </div>
         </Link>

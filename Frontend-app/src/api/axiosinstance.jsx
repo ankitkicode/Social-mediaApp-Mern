@@ -2,10 +2,10 @@
 import axios from 'axios';
 const yourAuthToken = localStorage.getItem('token');
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000', // Replace with your backend URl
+    baseURL: 'http://localhost:3000', 
     withCredentials: true,
     headers: {
-        'Authorization': `Bearer ${yourAuthToken}`, // If you need an auth token
+        'Authorization': `Bearer ${yourAuthToken}`, 
         'Content-Type': 'application/json',
     },
 });

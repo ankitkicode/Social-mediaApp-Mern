@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
-const dbUri = 'mongodb://localhost:27017/SocialMediaApp-insta'; // Replace with your MongoDB URI
+const dbUri = process.env.DATABASE_URL; // Replace with your MongoDB URI
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(dbUri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect(dbUri);
         console.log('MongoDB connected successfully');
        
 
