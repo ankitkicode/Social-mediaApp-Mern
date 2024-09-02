@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const plm = require('passport-local-mongoose');
+// const plm = require('passport-local-mongoose');
 const bcrypt = require('bcryptjs');
 
 
@@ -75,6 +75,6 @@ userModel.methods.comparePassword = async function(candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
 };
 
-userModel.plugin(plm);
+// userModel.plugin(plm);
 
 module.exports = mongoose.model('User',userModel)

@@ -19,11 +19,7 @@ app.use(cors(
 
 const connectDB = require('./database/dbconnection')
 connectDB();
-// Passport.js
-const passport = require('passport');
-const initializePassport = require('./middlewares/passportjs')
 
-initializePassport(passport);
 
 const expressSession = require('express-session')
 
@@ -37,8 +33,7 @@ app.use(expressSession(
 ))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 
