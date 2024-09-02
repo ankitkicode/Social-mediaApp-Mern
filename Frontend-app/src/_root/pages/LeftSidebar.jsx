@@ -12,9 +12,9 @@ const LeftSidebar = () => {
  useEffect(() => {
   const getData = async () => {
     try {
-      const response = await axiosInstance.get('http://localhost:3000/allposts');
+      const response = await axiosInstance.get('/allposts');
       if (response.data) {
-        console.log(response.data.loggedInUser)
+        // console.log(response.data.loggedInUser)
         setUser(response.data.loggedInUser); // Ensure you set the correct field from the response
       } else {
         setError('No data returned');

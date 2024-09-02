@@ -45,7 +45,7 @@ const PostCard = ({ post }) => {
           </ul>
         </div>
         <img
-          src={post.image ? `http://127.0.0.1:3000/${post.image}` : "/assets/icons/profile-placeholder.svg"}
+          src={post.image ? `https://social-mediaapp-mern.onrender.com/${post.image}` : "/assets/icons/profile-placeholder.svg"}
           className="h-64 xs:h-[400px] lg:h-[450px] w-full rounded-[24px] object-right-top object-cover mb-5"
           alt="Post"
         />

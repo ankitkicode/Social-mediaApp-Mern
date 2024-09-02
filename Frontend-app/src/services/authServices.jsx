@@ -11,7 +11,7 @@ export const loginUser = async (email, password) => {
 
 export const createAccount = async (name, username, email, password) => {
     try {
-        const response = await axiosInstance.post('register', {
+        const response = await axiosInstance.post('/register', {
             name,
             username,
             email,

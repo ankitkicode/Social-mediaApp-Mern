@@ -16,13 +16,13 @@ const Profile = () => {
       try {
         let url;
         if (id) {
-          url = `http://localhost:3000/userpost/${id}`;
+          url = `https://social-mediaapp-mern.onrender.com/userpost/${id}`;
         } else {
           const token = localStorage.getItem('token');
           if (!token) {
             throw new Error('No authentication token found');
           }
-          url = `http://localhost:3000/userpost/me`; // Assuming 'me' returns the logged-in user's profile
+          url = `https://social-mediaapp-mern.onrender.com/userpost/me`; // Assuming 'me' returns the logged-in user's profile
         }
 
         const response = await axiosInstance.get(url, {
@@ -186,7 +186,7 @@ const Profile = () => {
             profileUser.posts.map((post,index)=>(
            
               <div className='max-[740px]:h-[116px] max-[740px]:w-[116px] h-[150px] w-[150px] ml-2 bg-red-200'>
-              <img src={post.image ? `http://127.0.0.1:3000/${post.image}` : "/assets/icons/profile-placeholder.svg"} className='h-full border-gray-500 border w-full object-cover' alt="" />
+              <img src={post.image ? `https://social-mediaapp-mern.onrender.com/${post.image}` : "/assets/icons/profile-placeholder.svg"} className='h-full border-gray-500 border w-full object-cover' alt="" />
             </div>
             ))
            }

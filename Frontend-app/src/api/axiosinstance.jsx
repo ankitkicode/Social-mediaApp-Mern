@@ -2,7 +2,7 @@
 import axios from 'axios';
 const yourAuthToken = localStorage.getItem('token');
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000', 
+    baseURL: 'https://social-mediaapp-mern.onrender.com/', 
     withCredentials: true,
     headers: {
         'Authorization': `Bearer ${yourAuthToken}`, 

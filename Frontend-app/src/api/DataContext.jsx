@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await axiosInstance.get('http://localhost:3000/allposts');
+                const response = await axiosInstance.get('/allposts');
                 if (response) {
                     setLoginUser(response.data.loggedInUser);
                     // console.log(response.loggedInUser)

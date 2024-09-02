@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axiosInstance.get('http://localhost:3000/allposts');
+        const response = await axiosInstance.get('/allposts');
         // console.log('API Response:', response); 
         if (response.data) {
           // console.log(response.data)
