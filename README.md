@@ -1,5 +1,7 @@
 # Social Media App (MERN)
 
+# check live demo - https://social-mediaapp-mern-1.onrender.com/
+
 ## Overview
 This is a MERN stack-based social media application, similar to Instagram, designed to provide users with a platform to create, manage, and interact with posts and other users.
 
