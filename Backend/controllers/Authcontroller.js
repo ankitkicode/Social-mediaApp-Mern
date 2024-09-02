@@ -66,17 +66,13 @@ const LoginController = async (req, res, next) => {
                 message: 'Invalid password'
             });
         }
-        // Authenticate the user
-        req.login(user, { session: false }, async (err) => {
-            if (err) return next(err);
-            // Generate JWT token
-            const token = jwt.sign({ id: user._id, email: user.email }, secretKey, { expiresIn: '1h' });
-            // Send JSON response with token and user data
-            res.status(200).json({
-                message: 'User logged in successfully',
-                token: token,
-            });
-        });
+         // Generate JWT token
+         const token = jwt.sign({ id: user._id, email: user.email }, secretKey, { expiresIn: '1h' });
+         // Send JSON response with token and user data
+         res.status(200).json({
+             message: 'User logged in successfully',
+             token: token,
+         });
     } catch (error) {
         // Handle errors
         console.error(error);
