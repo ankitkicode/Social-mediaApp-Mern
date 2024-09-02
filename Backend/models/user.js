@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const plm = require('passport-local-mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 
 const userModel = new mongoose.Schema({
