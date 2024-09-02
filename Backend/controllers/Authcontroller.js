@@ -3,7 +3,8 @@ require('dotenv').config()
 const User = require('../models/user'); // Adjust the path to your User model
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.JWT_SECRET;
-console.log(secretKey,"sedddddddddddddddd")
+// console.log(secretKey,"sedddddddddddddddd");
+
 const RegisterController = async (req, res, next) => {
     const { username, name, email, password } = req.body;
 
